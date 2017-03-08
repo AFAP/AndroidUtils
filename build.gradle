@@ -4,46 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.novoda:bintray-release:0.4.0'
     }
 }
-
-plugins {
-    id "com.jfrog.bintray" version "1.7.3"
-}
-group = 'com.afap'
-version = '0.0.8'
-allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-}
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            groupId 'com.afap'
-            artifactId 'utils'
-            version '0.0.8'
-        }
-    }
-}
-bintray {
-    user = 'af'
-    key = 'xxxxxx'
-    publications = ['MyPublication']
-    pkg {
-        repo = 'maven'
-        name = 'utils'
-        userOrg = 'af'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/AFAP/AndroidUtils.git'
-        version {
-            name = '0.0.8'
-            vcsTag = '0.0.8'
-        }
-    }
-}
-
 

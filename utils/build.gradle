@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -8,7 +10,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 8
-        versionName "0.0.8"
+        versionName '0.0.8'
 
     }
     buildTypes {
@@ -17,9 +19,41 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        encoding "UTF-8"
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-apply from: "https://raw.githubusercontent.com/xiaopansky/android-library-publish-to-jcenter/master/bintrayUpload.gradle"
+
+publish {
+    userOrg = 'af'
+    groupId = 'com.afap'
+    artifactId = 'utils'
+    publishVersion = '0.0.8'
+    desc = 'Android Utils!'
+    website = 'https://github.com/AFAP/AndroidUtils'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.encoding = "UTF-8"
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+    }
+}
+allprojects {
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+    }
+}
+// 最终发布命令:gradlew clean build bintrayUpload -PbintrayUser=xxxxxx -PbintrayKey=xxxxxxxxxxxxxxxxxxxxxxx -PdryRun=false
