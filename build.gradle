@@ -1,24 +1,49 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
+group = 'com.afap'
+version = '0.0.8'
 allprojects {
     repositories {
         jcenter()
     }
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+}
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            groupId 'com.afap'
+            artifactId 'utils'
+            version '0.0.8'
+        }
+    }
+}
+bintray {
+    user = 'af'
+    key = 'xxxxxx'
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = 'utils'
+        userOrg = 'af'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/AFAP/AndroidUtils.git'
+        version {
+            name = '0.0.8'
+            vcsTag = '0.0.8'
+        }
+    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+

@@ -70,7 +70,6 @@ public class ByteUtil {
 
     /**
      * Converts a byte to an int, preserving the sign.
-     * <p/>
      * For example, FF will be converted to 255 and not -1.
      *
      * @param bite the byte

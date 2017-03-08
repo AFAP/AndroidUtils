@@ -24,6 +24,9 @@ public class NetworkUtil {
 
     /**
      * 获取手机联网方式。权限要求：ACCESS_NETWORK_STATE
+     *
+     * @param context 上下文
+     * @return 获取手机联网状态
      */
     public static int getNetworkState(Context context) {
         try {
@@ -55,6 +58,9 @@ public class NetworkUtil {
 
     /**
      * 获取当前连接的WIFI的SSID,如当前未连接wifi，返回null
+     *
+     * @param context 上下文
+     * @return 获取手机连接的wifi的SSID
      */
     public static String getConnectionSsid(Context context) {
         if (getNetworkState(context) != NETWORN_WIFI) {
@@ -67,6 +73,9 @@ public class NetworkUtil {
 
     /**
      * 获取手机IP地址，使用wifi或移动网络返回对应的地址，未联网，默认返回"0.0.0.0"
+     *
+     * @param context 上下文
+     * @return 获取手机网络IP
      */
     public static String getMobileIp(Context context) {
         if (getNetworkState(context) == NETWORN_WIFI) {
@@ -80,6 +89,9 @@ public class NetworkUtil {
 
     /**
      * 获取手机IP，wifi下。权限要求：ACCESS_WIFI_STATE
+     *
+     * @param context 上下文
+     * @return 获取手机网络IP
      */
     private static String getWifiIP(Context context) {
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -89,6 +101,8 @@ public class NetworkUtil {
 
     /**
      * 获取手机IP，移动网络。权限要求：android.permission.INTERNET
+     *
+     * @return 获取手机网络IP
      */
     private static String getMobileNetworkIp() {
         try {
@@ -111,6 +125,9 @@ public class NetworkUtil {
 
     /**
      * 获取路由设备网关地址。权限要求：ACCESS_WIFI_STATE
+     *
+     * @param context 上下文
+     * @return 网关地址
      */
     public static String getGateWay(Context context) {
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -118,7 +135,7 @@ public class NetworkUtil {
         return long2ip(dhcpInfo.gateway);
     }
 
-    public static String long2ip(int ip) {
+    private static String long2ip(int ip) {
         int[] b = new int[4];
         b[0] = (ip >> 24) & 0xff;
         b[1] = (ip >> 16) & 0xff;

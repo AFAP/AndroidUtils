@@ -15,28 +15,9 @@ import java.io.InputStream;
 public class ContextUtil {
 
     /**
-     * 获取屏幕高度
-     */
-    public static int getWindowWidth(Activity activity) {
-        DisplayMetrics metric = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.widthPixels;
-    }
-
-    /**
-     * 获取屏幕宽度
-     */
-    public static int getWindowHeight(Activity activity) {
-        DisplayMetrics metric = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
-        return metric.heightPixels;
-    }
-
-    /**
      * 获取当前应用版本号
      *
-     * @return 版本号
-     * 发生异常时返回0
+     * @return 版本号，发生异常时返回0
      */
     public static int getAppVersionCode(Context context) {
         PackageInfo packageInfo = null;
@@ -51,8 +32,7 @@ public class ContextUtil {
     /**
      * 获取当前应用版本
      *
-     * @return 版本名称
-     * 发生异常时返回null
+     * @return 版本名称，发生异常时返回null
      */
     public static String getAppVersionName(Context context) {
         PackageInfo packageInfo;
@@ -62,10 +42,6 @@ public class ContextUtil {
             return null;
         }
         return packageInfo.versionName;
-    }
-
-    public static void gotoWifiSettings(Context context) {
-        context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
     }
 
     /**
@@ -142,7 +118,7 @@ public class ContextUtil {
     /**
      * 转换为整型数据
      */
-    public static int parseToInt(String s, int defaultvalue) {
+    private static int parseToInt(String s, int defaultvalue) {
         if (s == null || s.length() == 0) {
             return defaultvalue;
         }
