@@ -55,7 +55,7 @@ public class ContextUtil {
      * 发生异常时返回null
      */
     public static String getAppVersionName(Context context) {
-        PackageInfo packageInfo = null;
+        PackageInfo packageInfo;
         try {
             packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
