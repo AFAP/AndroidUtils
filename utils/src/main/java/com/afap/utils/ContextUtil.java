@@ -1,13 +1,10 @@
 package com.afap.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 
 import java.io.InputStream;
@@ -17,10 +14,11 @@ public class ContextUtil {
     /**
      * 获取当前应用版本号
      *
+     * @param context 上下文
      * @return 版本号，发生异常时返回0
      */
     public static int getAppVersionCode(Context context) {
-        PackageInfo packageInfo = null;
+        PackageInfo packageInfo;
         try {
             packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
@@ -32,6 +30,7 @@ public class ContextUtil {
     /**
      * 获取当前应用版本
      *
+     * @param context 上下文
      * @return 版本名称，发生异常时返回null
      */
     public static String getAppVersionName(Context context) {
@@ -43,6 +42,29 @@ public class ContextUtil {
         }
         return packageInfo.versionName;
     }
+
+    /**
+     * DP转PX
+     *
+     * @param context 上下文
+     * @param dp      dp数值
+     * @return 转化后的PX数值
+     */
+    public static float dp2px(Context context, float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * SP转PX
+     *
+     * @param context 上下文
+     * @param sp      sp数值
+     * @return 转化后的PX数值
+     */
+    public static float sp2px(Context context, float sp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
+    }
+
 
     /**
      * 从Assets资源文件获取String
