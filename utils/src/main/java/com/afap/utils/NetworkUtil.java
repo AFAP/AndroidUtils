@@ -56,6 +56,11 @@ public class NetworkUtil {
         }
     }
 
+    public static boolean isNetworkAvailable(Context context) {
+        return getNetworkState(context) != NETWORN_NONE;
+    }
+
+
     /**
      * 获取当前连接的WIFI的SSID,如当前未连接wifi，返回null
      *
