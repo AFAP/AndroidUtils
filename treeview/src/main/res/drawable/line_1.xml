@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/shape" />
+
+
+    <item
+
+        android:width="4dp"
+        android:drawable="@drawable/line_1_1"
+        android:left="24.5dp"
+        android:right="24.5dp" />
+
+    <item
+        android:width="25dp"
+        android:bottom="24.5dp"
+        android:drawable="@drawable/line_1_2"
+        android:left="25dp"
+        android:top="24.5dp" />
+</layer-list>
