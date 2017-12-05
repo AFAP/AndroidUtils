@@ -50,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
         rootNode.addChild(node1_2);
         rootNode.addChild(node1_3);
 
-        mValues.add(node);
+//        mValues.add(node);
     }
 }

@@ -1,14 +1,34 @@
 package com.afap.utils;
 
+import android.content.Context;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 文件操作工具类
  */
 public class FileUtil {
+
+
+    public String getStringFromAssets(Context context, String fileName) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open(fileName));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line;
+            String result = "";
+            while ((line = bufReader.readLine()) != null)
+                result += line;
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * 将字符串写入文件
