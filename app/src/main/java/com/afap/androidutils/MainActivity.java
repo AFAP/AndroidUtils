@@ -1,55 +1,57 @@
 package com.afap.androidutils;
 
 
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import com.afap.treeview.TreeNode;
-import com.afap.treeview.TreeNodeViewAdapter;
+
+import com.afap.utils.DeviceUtils;
+import com.afap.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
-
-    private RecyclerView mRecyclerView;
-    private TreeNodeViewAdapter mAdapter;
-
-    private List<TreeNode> mValues;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ToastUtil.init(this);
 
+//        Intent intent = new Intent()
+//                .setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+//                .setData(Uri.fromParts("package",
+//                        this.getPackageName(), null));
+//        startActivity(intent);
 
-        mValues = new ArrayList<>();
-        test();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new TreeNodeViewAdapter(mValues, this);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
 
-    void test() {
-        TreeNode rootNode = new TreeNode("id-000", "我是ROOT");
-        TreeNode node1_1 = new TreeNode("id-000", "一级节点-1");
-        TreeNode node1_2 = new TreeNode("id-000", "一级节点-2");
-        TreeNode node1_3 = new TreeNode("id-000", "一级节点-3");
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_check_notification:
+                boolean flag = NotificationManagerCompat.from(this).areNotificationsEnabled();
 
-        for (int i = 0; i < 20; i++) {
-            TreeNode node = new TreeNode("id-" + i, "content" + i);
-            node1_1.addChild(node);
+                Log.i("UTILS", "当前应用通知是否可用：" + flag);
+
+                ((Button) v).setText(getString(R.string.test_check_notification) + " (" + flag + ")");
+                break;
+
+            case R.id.btn_flash_switch:
+
+DeviceUtils.switchFlash();
+
+                break;
         }
-        rootNode.addChild(node1_1);
-        rootNode.addChild(node1_2);
-        rootNode.addChild(node1_3);
-
-//        mValues.add(node);
     }
 }

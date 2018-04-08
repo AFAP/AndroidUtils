@@ -1,4 +1,8 @@
 buildscript {
+    ext.compile_sdk_version = 27
+    ext. build_tools_version = "25.0.3"
+
+
     repositories {
         jcenter()
     }

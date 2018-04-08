@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidUtils</string>
+
+
+    <string name="test_check_notification">检查是否可以在通知栏显示</string>
+    <string name="test_flash_switch">开关闪光灯</string>
+
+
 </resources>

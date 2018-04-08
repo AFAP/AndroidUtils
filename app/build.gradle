@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.build_tools_version
+
+
     defaultConfig {
         applicationId "com.afap.androidutils"
         minSdkVersion 16
