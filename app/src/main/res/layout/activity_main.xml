@@ -6,16 +6,39 @@
 
 
     <Button
+        android:id="@+id/btn_goto_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进入应用设置" />
+
+    <Button
         android:id="@+id/btn_check_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
         android:text="@string/test_check_notification" />
 
     <Button
         android:id="@+id/btn_flash_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
         android:text="@string/test_flash_switch" />
+
+    <Button
+        android:id="@+id/btn_volume_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_volume_up" />
+
+    <Button
+        android:id="@+id/btn_volume_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_volume_down" />
+
+    <Button
+        android:id="@+id/btn_vibrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/test_vibrate" />
+
 </LinearLayout>

@@ -27,11 +27,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ToastUtil.init(this);
 
-//        Intent intent = new Intent()
-//                .setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-//                .setData(Uri.fromParts("package",
-//                        this.getPackageName(), null));
-//        startActivity(intent);
+
+        findViewById(R.id.btn_goto_settings).setOnClickListener(this);
+        findViewById(R.id.btn_check_notification).setOnClickListener(this);
+        findViewById(R.id.btn_flash_switch).setOnClickListener(this);
+        findViewById(R.id.btn_volume_up).setOnClickListener(this);
+
+        findViewById(R.id.btn_volume_down).setOnClickListener(this);
+        findViewById(R.id.btn_vibrate).setOnClickListener(this);
+
+
+
+
 
     }
 
@@ -39,6 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_goto_settings:
+                Intent intent = new Intent()
+                        .setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        .setData(Uri.fromParts("package",
+                                this.getPackageName(), null));
+                startActivity(intent);
+                break;
             case R.id.btn_check_notification:
                 boolean flag = NotificationManagerCompat.from(this).areNotificationsEnabled();
 
@@ -49,9 +63,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_flash_switch:
 
-DeviceUtils.switchFlash();
+                DeviceUtils.switchFlash(this);
 
                 break;
+            case R.id.btn_volume_up:
+
+                DeviceUtils.volumeUp(this);
+
+                break;
+            case R.id.btn_volume_down:
+
+                DeviceUtils.volumeDown(this);
+
+                break;
+            case R.id.btn_vibrate:
+
+                DeviceUtils.vibrator(this);
+
+                break;
+
         }
     }
 }

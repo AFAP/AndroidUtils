@@ -1,10 +1,15 @@
-<manifest
-    package="com.afap.utils"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.afap.utils">
 
     <!--<uses-permission android:name="android.permission.INTERNET"/>-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
+    <uses-feature android:name="android.hardware.camera2" />
+    <uses-feature android:name="android.hardware.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>
