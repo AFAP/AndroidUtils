@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/common_titlebar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.kidswant.normal.widget.PinnedHeaderListView
+            android:id="@+id/choosecity_pinned_header_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alwaysDrawnWithCache="true"
+            android:cacheColorHint="#00000000"
+            android:divider="#cecece"
+            android:dividerHeight="0.5dp"
+            android:drawSelectorOnTop="false"
+            android:fadingEdgeLength="0.0dip"
+            android:focusableInTouchMode="true"
+            android:scrollbars="none" />
+
+        <com.kidswant.normal.widget.QuickAlphabeticBar
+            android:id="@+id/choosecity_bladeview"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right" />
+    </RelativeLayout>
+
+</LinearLayout>
