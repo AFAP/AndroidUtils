@@ -40,5 +40,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/test_vibrate" />
-
+    <Button
+        android:id="@+id/btn_pinned_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btn_pinned_list" />
 </LinearLayout>

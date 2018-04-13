@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.afap.androidutils.activity.PinnedHeaderListViewActivity;
 import com.afap.utils.DeviceUtils;
 import com.afap.utils.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_volume_down).setOnClickListener(this);
         findViewById(R.id.btn_vibrate).setOnClickListener(this);
 
+        findViewById(R.id.btn_pinned_list).setOnClickListener(this);
 
 
 
@@ -81,6 +80,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 DeviceUtils.vibrator(this);
 
                 break;
+            case R.id.btn_pinned_list:
+
+                Intent intent1 = new Intent(this, PinnedHeaderListViewActivity.class);
+                startActivity(intent1);
+
+                break;
+
 
         }
     }

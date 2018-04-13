@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="quick_alphabet_bar_bg">#DDDD</color>
+    <color name="quick_alphabet_bar_text">#666666</color>
+    <color name="quick_alphabet_bar_current">#F1517D</color>
+    <color name="quick_alphabet_bar_pop">#F1517D</color>
+
+</resources>

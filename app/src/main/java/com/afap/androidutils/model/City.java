@@ -1,6 +1,11 @@
 package com.afap.androidutils.model;
 
+import android.database.Cursor;
+
+import com.afap.androidutils.database.DB;
+
 import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * 城市
@@ -59,6 +64,19 @@ public class City implements Serializable {
 		sb.append("code:").append(code).append("\n");
 		sb.append("name:").append(name).append("\n");
 		return sb.toString();
+	}
+
+	public static City parseFromCursor(Cursor c) {
+		City city = new City();
+		city.setCode(c.getString(c.getColumnIndex(DB.CityTable.CITYCODE)));
+		city.setProvinceCode(c.getString(c
+				.getColumnIndex(DB.CityTable.PROVINCECODE)));
+		city.setName(c.getString(c.getColumnIndex(DB.CityTable.CITYNAME)));
+		String pinyin = c.getString(c.getColumnIndex(DB.CityTable.CITYPINYIN));
+		city.setPinyin(pinyin);
+		city.setFirshLetter(pinyin.substring(0, 1).toUpperCase(
+				Locale.getDefault()));
+		return city;
 	}
 
 }

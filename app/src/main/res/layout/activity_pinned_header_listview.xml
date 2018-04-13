@@ -5,17 +5,13 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        layout="@layout/common_titlebar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.kidswant.normal.widget.PinnedHeaderListView
-            android:id="@+id/choosecity_pinned_header_list"
+        <com.afap.widget.pinnedheaderlistview.PinnedHeaderListView
+            android:id="@+id/pinned_header_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alwaysDrawnWithCache="true"
@@ -27,9 +23,9 @@
             android:focusableInTouchMode="true"
             android:scrollbars="none" />
 
-        <com.kidswant.normal.widget.QuickAlphabeticBar
+        <com.afap.widget.QuickAlphabetBar
             android:id="@+id/choosecity_bladeview"
-            android:layout_width="30dp"
+            android:layout_width="28dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_gravity="right" />

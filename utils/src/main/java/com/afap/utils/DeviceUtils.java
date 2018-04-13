@@ -19,7 +19,6 @@ import android.util.Log;
 
 public class DeviceUtils {
     public static final String TAG = "DeviceUtils";
-
     public static boolean isTorched = false;
 
 

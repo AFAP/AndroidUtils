@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/group_title"
+<TextView
+    android:id="@+id/pinned_header_listview_group"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/choosecity_pinned_header_listview_group_background"
+    android:background="@drawable/pinned_header_listview_group_background"
     android:gravity="left|center"
     android:paddingBottom="5.0dip"
     android:paddingLeft="14.0dip"
     android:paddingRight="14.0dip"
     android:paddingTop="5.0dip"
     android:textColor="#ff2f2f2f"
-    android:textStyle="bold" />
+    android:textStyle="bold"/>
