@@ -7,10 +7,13 @@ android {
 
     defaultConfig {
         applicationId "com.afap.androidutils"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
     }
     buildTypes {
         release {

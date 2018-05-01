@@ -1,21 +1,36 @@
 package com.afap.utils;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.media.AudioManager;
+import android.net.Uri;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 public class DeviceUtils {
     public static final String TAG = "DeviceUtils";
@@ -112,5 +127,98 @@ public class DeviceUtils {
         vibrator.vibrate(p, -1);
     }
 
+    private static TextToSpeech textToSpeech = null;
+
+    public static TextToSpeech getTextToSpeech(final Context context) {
+        if (textToSpeech == null) {
+            textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+
+                @Override
+                public void onInit(int status) {
+                    if (status == TextToSpeech.SUCCESS) {
+                        int result = textToSpeech.setLanguage(Locale.CHINA);
+                    }
+                }
+            });
+        }
+
+        return textToSpeech;
+    }
+
+
+    /**
+     * @param context    上下文
+     * @param text       待朗读的文字，必须。
+     * @param locale     国家地区，可为空。
+     * @param speechRate 语速，可为空。1:正常，0.5:半速，2:倍速
+     * @param pitch      音调，可为空。1:正常，低于1或者高于1，降低或增高音调
+     * @param queueMode  任务队列策略，可为空。
+     *                   1. TextToSpeech.QUEUE_FLUSH,0: 中断当前实例正在运行的任务，转而执行新的语音任务
+     *                   2、TextToSpeech.QUEUE_ADD,1:添加至队列最后，待前面任务执行完毕后会执行
+     * @param params     额外的参数，可为空.
+     *                   支持以下参数:
+     *                   1.TextToSpeech.Engine.KEY_PARAM_STREAM
+     *                   2.TextToSpeech.Engine.KEY_PARAM_VOLUME
+     *                   3.TextToSpeech.Engine.KEY_PARAM_PAN
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void speak(final Context context, final CharSequence text, final Locale locale, final float
+            speechRate, final float pitch, final int queueMode, final Bundle params) {
+        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                Log.w(TAG, "-------------->onInit");
+                if (status == TextToSpeech.SUCCESS) {
+                    if (locale != null) {
+                        if (textToSpeech.isLanguageAvailable(locale) == TextToSpeech.LANG_AVAILABLE ||
+                                textToSpeech.isLanguageAvailable(locale) == TextToSpeech.LANG_COUNTRY_AVAILABLE ||
+                                textToSpeech.isLanguageAvailable(locale) == TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE) {
+                            textToSpeech.setLanguage(locale);
+                        } else {
+                            Log.w(TAG, "不支持该语言：" + locale.getDisplayName());
+                        }
+                    }
+                    textToSpeech.setPitch(pitch);
+                    textToSpeech.setSpeechRate(speechRate);
+
+                    int result = textToSpeech.speak(text, queueMode, params, null);
+                    Log.i(TAG, "播放声音结果：" + result);
+                }
+            }
+        });
+    }
+
+    /**
+     * 打开手机浏览器并打开指定网页
+     *
+     * @param context 上下文
+     * @param url     网站地址，可为空，当为空时使用“http://”。
+     */
+    public static void openBrowser(Context context, String url) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        if (TextUtils.isEmpty(url)) {
+            url = "http://";
+        }
+        Uri uri = Uri.parse(url);
+        intent.setData(uri);
+        context.startActivity(intent);
+    }
+
+
+    /**
+     * 获取手机连接过的wifi列表
+     *
+     * @param context 上下文
+     * @return Wi-Fi 记录列表
+     */
+    public static List<WifiConfiguration> getHistoryWifis(Context context) {
+        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        List<WifiConfiguration> list = manager != null ? manager.getConfiguredNetworks() : null;
+        if (list == null) {
+            return new ArrayList<>();
+        }
+        return list;
+    }
 
 }

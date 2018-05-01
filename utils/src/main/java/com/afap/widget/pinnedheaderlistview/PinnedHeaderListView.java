@@ -85,6 +85,8 @@ public class PinnedHeaderListView extends ListView {
 
     /**
      * 设置顶部分组标签布局
+     *
+     * @param position 列表元素位置
      */
     public void configureHeaderView(int position) {
         if (mPinnedHeaderView == null) {

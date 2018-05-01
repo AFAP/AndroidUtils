@@ -72,6 +72,7 @@ public class ContextUtil {
      * @param context  上下文内容
      * @param filePath assets文件夹中文件的名称
      * @param charset  字符编码，可传""或者null，默认使用UTF-8
+     * @return 资源文件字符串信息
      */
     public static String getStringFromAsset(Context context, String filePath, String charset) {
         // 未设置字符编码，默认使用UTF-8
@@ -155,7 +156,6 @@ public class ContextUtil {
             return defaultvalue;
         }
     }
-
 
 
 }

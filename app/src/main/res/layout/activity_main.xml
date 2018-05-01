@@ -45,4 +45,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="btn_pinned_list" />
+
+    <Button
+        android:id="@+id/btn_text_to_speech"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btn_text_to_speech" />
+
+    <Button
+        android:id="@+id/btn_open_browser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开浏览器" />
+
+
 </LinearLayout>

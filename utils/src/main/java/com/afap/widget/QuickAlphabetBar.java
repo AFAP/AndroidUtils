@@ -184,6 +184,8 @@ public class QuickAlphabetBar extends View {
 
     /**
      * 设置字符被点击后的事件
+     *
+     * @param listener 快速索引字符点击事件
      */
     public void setOnItemClickListener(OnLetterClickListener listener) {
         mOnItemClickListener = listener;
@@ -205,6 +207,8 @@ public class QuickAlphabetBar extends View {
 
     /**
      * 动态设置游标所处位置
+     *
+     * @param position 当前索引位置
      */
     public void setPosition(int position) {
         choose = position;
@@ -213,6 +217,8 @@ public class QuickAlphabetBar extends View {
 
     /**
      * 根据字符动态设置游标所处位置
+     *
+     * @param letter 根据索引字符集的字符来设置到指定位置
      */
     public void setPositionByLetter(String letter) {
         for (int i = 0; i < letters.length; i++) {

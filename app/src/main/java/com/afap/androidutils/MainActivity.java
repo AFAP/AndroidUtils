@@ -3,18 +3,22 @@ package com.afap.androidutils;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 
 
 import com.afap.androidutils.activity.PinnedHeaderListViewActivity;
 import com.afap.utils.DeviceUtils;
 import com.afap.utils.ToastUtil;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_vibrate).setOnClickListener(this);
 
         findViewById(R.id.btn_pinned_list).setOnClickListener(this);
-
-
+        findViewById(R.id.btn_text_to_speech).setOnClickListener(this);
+        findViewById(R.id.btn_open_browser).setOnClickListener(this);
 
 
     }
@@ -84,6 +88,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Intent intent1 = new Intent(this, PinnedHeaderListViewActivity.class);
                 startActivity(intent1);
+
+                break;
+            case R.id.btn_text_to_speech:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    DeviceUtils.speak(this, "hello every", Locale.US, 1, 1, 0, null);
+                } else {
+                    Log.w("MainActivity", "最低只支持到21");
+                }
+
+                break;
+            case R.id.btn_open_browser:
+                    DeviceUtils.openBrowser(this,null);
 
                 break;
 
