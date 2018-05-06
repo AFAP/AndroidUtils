@@ -1,6 +1,7 @@
 package com.afap.utils;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -221,4 +223,35 @@ public class DeviceUtils {
         return list;
     }
 
+    /**
+     * 拨打电话（呼出拨号盘）
+     *
+     * @param phoneNum 电话号码
+     */
+    public static void dialPhone(Context context, String phoneNum) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 拨打电话（直接拨打电话）
+     * 需要权限：android.permission.CALL_PHONE
+     *
+     * @param phoneNum 电话号码
+     * @return 呼出结果，一般权限检测通过则认为呼出成功
+     */
+    public static boolean callPhone(Context context, String phoneNum) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            Log.w(TAG, "未获得权限 -> android.permission.CALL_PHONE");
+            return false;
+        }
+        context.startActivity(intent);
+        return true;
+    }
 }

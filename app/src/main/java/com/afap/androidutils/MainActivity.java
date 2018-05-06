@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_pinned_list).setOnClickListener(this);
         findViewById(R.id.btn_text_to_speech).setOnClickListener(this);
         findViewById(R.id.btn_open_browser).setOnClickListener(this);
+        findViewById(R.id.btn_dial_phone).setOnClickListener(this);
+        findViewById(R.id.btn_call_phone).setOnClickListener(this);
 
 
     }
@@ -102,7 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     DeviceUtils.openBrowser(this,null);
 
                 break;
+            case R.id.btn_dial_phone:
+                DeviceUtils.dialPhone(this,"10086");
 
+                break;
+            case R.id.btn_call_phone:
+                DeviceUtils.callPhone(this,"10086");
+
+                break;
 
         }
     }
