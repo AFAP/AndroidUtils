@@ -1,9 +1,6 @@
 package com.afap.utils;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,22 +14,17 @@ import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class DeviceUtils {
     public static final String TAG = "DeviceUtils";
@@ -55,20 +47,9 @@ public class DeviceUtils {
             CameraManager manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
             try {
                 String cameraId = manager.getCameraIdList()[0];
-                manager.setTorchMode(cameraId, !isTorched);
                 manager.getCameraCharacteristics(cameraId).get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-                manager.registerTorchCallback(new CameraManager.TorchCallback() {
-                    @Override
-                    public void onTorchModeUnavailable(@NonNull String cameraId) {
-                        super.onTorchModeUnavailable(cameraId);
-                    }
-
-                    @Override
-                    public void onTorchModeChanged(@NonNull String cameraId, boolean enabled) {
-                        super.onTorchModeChanged(cameraId, enabled);
-                        isTorched = enabled;
-                    }
-                }, new Handler());
+                manager.setTorchMode(cameraId, !isTorched);
+                isTorched = !isTorched;
             } catch (CameraAccessException e) {
                 Log.e(TAG, "打开闪光灯失败 -- 权限异常");
                 e.printStackTrace();
@@ -253,5 +234,26 @@ public class DeviceUtils {
         }
         context.startActivity(intent);
         return true;
+    }
+
+    /**
+     * 调用谷歌地图
+     *
+     * @param latitude  纬度
+     * @param longitude 经度
+     * @param address   地址
+     * @return 安装有谷歌地图返回true
+     */
+    public static boolean startGoogleMap(Context context, double latitude, double longitude, String address) {
+        Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude + "?q=" + address);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(mapIntent);
+            return true;
+        } else {
+            Log.w(TAG, "未安装谷歌地图应用 -> com.google.android.apps.maps");
+            return false;
+        }
     }
 }
