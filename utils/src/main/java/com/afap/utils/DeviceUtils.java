@@ -15,6 +15,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -253,6 +254,25 @@ public class DeviceUtils {
             return true;
         } else {
             Log.w(TAG, "未安装谷歌地图应用 -> com.google.android.apps.maps");
+            return false;
+        }
+    }
+
+    /**
+     * 位置服务是否可用
+     *
+     * @param context 上下文
+     * @return 位置服务打开返回true
+     */
+    public static boolean isLocationEnabled(Context context) {
+        //  LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        // boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        // boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        try {
+            int locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
             return false;
         }
     }
