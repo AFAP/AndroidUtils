@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
 
-def VERSION_CODE = 15
-def VERSION_NAME = "0.1.5"
+def VERSION_CODE = 16
+def VERSION_NAME = "0.1.6"
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version

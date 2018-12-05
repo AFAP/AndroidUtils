@@ -98,7 +98,7 @@ public class ContextUtil {
      *
      * @param version1 ;
      * @param version2 ;
-     *                 version1更加新时返回1，相同返回0，否则返回-1 ;
+     * @return version1更加新时返回1，相同返回0，否则返回-1 ;
      */
     public static int compareVersion(String version1, String version2) {
         if (TextUtils.equals(version1, version2)) {

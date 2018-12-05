@@ -11,6 +11,9 @@ public class ByteUtil {
 
     /**
      * 字节数组转换成16进制的字符串表示: [01, 30, FF, AA]
+     *
+     * @param array 字节数组
+     * @return 16进制字符转
      */
     public static String byteArrayToHexString(final byte[] array) {
         final StringBuilder sb = new StringBuilder();

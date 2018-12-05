@@ -3,7 +3,6 @@ package com.afap.utils;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -19,8 +18,6 @@ import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,22 +26,21 @@ import java.util.List;
 import java.util.Locale;
 
 public class DeviceUtils {
-    public static final String TAG = "DeviceUtils";
-    public static boolean isTorched = false;
-
+    private static final String TAG = "DeviceUtils";
+    private static boolean isTorched = false;
 
     /**
      * 开启/关闭闪光灯
      *
      * @param context 上下文
      */
+    @RequiresPermission(Manifest.permission.CAMERA)
     public static void switchFlash(Context context) {
-        int flag = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA);
-        if (flag != PackageManager.PERMISSION_GRANTED) {
-            Log.w(TAG, "打开闪光灯失败 -- Camera权限未获取!!!");
-            return;
-        }
-
+//        int flag = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA);
+//        if (flag != PackageManager.PERMISSION_GRANTED) {
+//            Log.w(TAG, "打开闪光灯失败 -- Camera权限未获取!!!");
+//            return;
+//        }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             CameraManager manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
             try {
@@ -127,7 +123,6 @@ public class DeviceUtils {
                 }
             });
         }
-
         return textToSpeech;
     }
 
@@ -210,6 +205,7 @@ public class DeviceUtils {
     /**
      * 拨打电话（呼出拨号盘）
      *
+     * @param context  上下文
      * @param phoneNum 电话号码
      */
     public static void dialPhone(Context context, String phoneNum) {
@@ -222,26 +218,31 @@ public class DeviceUtils {
     /**
      * 拨打电话（直接拨打电话）
      * 需要权限：android.permission.CALL_PHONE
+     * <p>
      *
+     * @param context  上下文
      * @param phoneNum 电话号码
      * @return 呼出结果，一般权限检测通过则认为呼出成功
      */
+    @RequiresPermission(Manifest.permission.CALL_PHONE)
     public static boolean callPhone(Context context, String phoneNum) {
         Intent intent = new Intent(Intent.ACTION_CALL);
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) !=
-                PackageManager.PERMISSION_GRANTED) {
-            Log.w(TAG, "未获得权限 -> android.permission.CALL_PHONE");
-            return false;
-        }
+//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) !=
+//                PackageManager.PERMISSION_GRANTED) {
+//            Log.w(TAG, "未获得权限 -> android.permission.CALL_PHONE");
+//            return false;
+//        }
         context.startActivity(intent);
         return true;
     }
 
     /**
      * 调用谷歌地图
+     * <p>
      *
+     * @param context   上下文
      * @param latitude  纬度
      * @param longitude 经度
      * @param address   地址
