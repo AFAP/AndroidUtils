@@ -1,6 +1,6 @@
 buildscript {
-    ext.compile_sdk_version = 27
-    ext. build_tools_version = "27.0.3"
+    ext.compile_sdk_version = 28
+    ext.build_tools_version = "27.0.3"
 
 
     repositories {

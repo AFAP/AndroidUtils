@@ -18,6 +18,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -105,6 +106,7 @@ public class DeviceUtils {
      *
      * @param context 上下文
      */
+    @RequiresPermission(Manifest.permission.VIBRATE)
     public static void vibrator(Context context) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         long[] p = {100, 3000};
