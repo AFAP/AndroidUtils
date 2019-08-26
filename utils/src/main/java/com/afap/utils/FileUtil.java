@@ -1,6 +1,7 @@
 package com.afap.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 
 /**
  * 文件操作工具类
@@ -56,6 +58,44 @@ public class FileUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+
+    /**
+     * 格式化文件大小
+     *
+     * @param fileSize 字节
+     * @return 文件大小
+     */
+    public static String FormatFileSize(long fileSize) {
+        DecimalFormat df = new DecimalFormat("#0.00");
+        String s = "";
+        if (fileSize < 1024) {
+            s = df.format((double) fileSize) + "B";
+        } else if (fileSize < 1048576) {
+            s = df.format((double) fileSize / 1024) + "K";
+        } else if (fileSize < 1073741824) {
+            s = df.format((double) fileSize / 1048576) + "M";
+        } else {
+            s = df.format((double) fileSize / 1073741824) + "G";
+        }
+        return s;
+    }
+
+    /**
+     * 校验文件名合法性
+     *
+     * @param fileName 文件名
+     * @return 是否合法
+     */
+    public static boolean isFileNameValidate(String fileName) {
+        if (TextUtils.isEmpty(fileName) || fileName.length() > 255) {
+            return false;
+        } else {
+            return fileName
+                    .matches("[^\\s\\\\/:\\*\\?\\\"<>\\|](\\x20|[^\\s\\\\/:\\*\\?\\\"<>\\|])" +
+                            "*[^\\s\\\\/:\\*\\?\\\"<>\\|\\.]$");
         }
     }
 }
