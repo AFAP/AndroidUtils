@@ -107,31 +107,32 @@ public class ContextUtil {
         String[] versionArray1 = version1.split("\\.");
         String[] versionArray2 = version2.split("\\.");
         int ret = 0;
-        if (versionArray1 != null && versionArray2 != null) {
-            int num = versionArray1.length < versionArray2.length ? versionArray1.length : versionArray2.length;
-            for (int i = 0; i < num; i++) {
-                String str1 = versionArray1[i];
-                String str2 = versionArray2[i];
-                if (str1 != null && str2 != null) {
-                    int num1 = parseToInt(str1, 0);
-                    int num2 = parseToInt(str2, 0);
-                    if (num1 == num2) {
-                        ret = 0;
-                        continue;
-                    } else if (num1 > num2) {
-                        ret = 1;
-                        return ret;
-                    } else {
-                        ret = -1;
-                        return ret;
-                    }
+
+
+        int num = Math.min(versionArray1.length, versionArray2.length);
+        for (int i = 0; i < num; i++) {
+            String str1 = versionArray1[i];
+            String str2 = versionArray2[i];
+            if (str1 != null && str2 != null) {
+                int num1 = parseToInt(str1, 0);
+                int num2 = parseToInt(str2, 0);
+                if (num1 == num2) {
+                    ret = 0;
+                } else if (num1 > num2) {
+                    ret = 1;
+                    return ret;
+                } else {
+                    ret = -1;
+                    return ret;
                 }
             }
         }
-        if (ret == 0 && (versionArray1.length != versionArray2.length)) {
+
+
+        if (versionArray1.length != versionArray2.length) {
             if (versionArray1.length > versionArray2.length) {
                 ret = 1;
-            } else if (versionArray1.length < versionArray2.length) {
+            } else {
                 ret = -1;
             }
         }
@@ -147,7 +148,7 @@ public class ContextUtil {
         }
 
         try {
-            if (s.indexOf(".") != -1) {
+            if (s.contains(".")) {
                 return (int) Float.parseFloat(s);
             } else {
                 return Integer.parseInt(s);

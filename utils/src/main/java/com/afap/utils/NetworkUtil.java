@@ -1,5 +1,6 @@
 package com.afap.utils;
 
+import android.Manifest;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
@@ -7,6 +8,8 @@ import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+
+import androidx.annotation.RequiresPermission;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -28,6 +31,7 @@ public class NetworkUtil {
      * @param context 上下文
      * @return 获取手机联网状态
      */
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static int getNetworkState(Context context) {
         try {
             ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context
@@ -56,6 +60,7 @@ public class NetworkUtil {
         }
     }
 
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static boolean isNetworkAvailable(Context context) {
         return getNetworkState(context) != NETWORN_NONE;
     }
@@ -67,6 +72,7 @@ public class NetworkUtil {
      * @param context 上下文
      * @return 获取手机连接的wifi的SSID
      */
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static String getConnectionSsid(Context context) {
         if (getNetworkState(context) != NETWORN_WIFI) {
             return null;
@@ -82,6 +88,7 @@ public class NetworkUtil {
      * @param context 上下文
      * @return 获取手机网络IP
      */
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     public static String getMobileIp(Context context) {
         if (getNetworkState(context) == NETWORN_WIFI) {
             return getWifiIP(context);
