@@ -16,8 +16,10 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
+
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
+
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -183,6 +185,7 @@ public class DeviceUtils {
         }
         Uri uri = Uri.parse(url);
         intent.setData(uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
@@ -234,6 +237,7 @@ public class DeviceUtils {
 //            Log.w(TAG, "未获得权限 -> android.permission.CALL_PHONE");
 //            return false;
 //        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         return true;
     }
@@ -253,6 +257,7 @@ public class DeviceUtils {
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         if (mapIntent.resolveActivity(context.getPackageManager()) != null) {
+            mapIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(mapIntent);
             return true;
         } else {
