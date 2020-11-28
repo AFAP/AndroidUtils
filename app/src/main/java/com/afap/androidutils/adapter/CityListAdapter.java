@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.afap.androidutils.R;
 import com.afap.androidutils.model.City;
+import com.afap.widget.QuickIndexBar;
 import com.afap.widget.pinnedheaderlistview.PinnedHeaderListView;
 import com.afap.widget.pinnedheaderlistview.PinnedHeaderListViewAdapter;
-import com.afap.widget.QuickAlphabetBar;
 
 /**
  * 快速索引城市列表
@@ -22,13 +22,13 @@ public class CityListAdapter extends PinnedHeaderListViewAdapter<City> {
 
     private List<City> mCitys;
     private LayoutInflater mInflater;
-    private QuickAlphabetBar mQuickAlphabeticBar;
+    private QuickIndexBar mQuickIndexBar;
     private int curFirstVisibleItem = -1;
     private int curSection = -1;
 
     public CityListAdapter(Context context, List<City> list,
                            Map<String, List<City>> map, List<String> sections,
-                           List<Integer> positions, Map<String, Integer> indexeMap, PinnedHeaderListView listView, QuickAlphabetBar bar) {
+                           List<Integer> positions, Map<String, Integer> indexeMap, PinnedHeaderListView listView, QuickIndexBar bar) {
         super(list, map, sections, positions,indexeMap, listView, bar);
         mInflater = LayoutInflater.from(context);
     }

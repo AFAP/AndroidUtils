@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
 
-def VERSION_CODE = 103
-def VERSION_NAME = "1.0.3"
+def VERSION_CODE = 104
+def VERSION_NAME = "1.0.4"
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -36,7 +36,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 }
 
 publish {

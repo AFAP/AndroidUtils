@@ -1,0 +1,6 @@
+<resources>
+    <!--快速索引bar-->
+    <dimen name="af_quick_index_bar_padding">2dp</dimen>
+    <dimen name="af_quick_index_bar_text">13dp</dimen>
+    <dimen name="af_quick_index_bar_text_padding">3dp</dimen>
+</resources>

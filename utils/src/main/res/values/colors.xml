@@ -5,4 +5,13 @@
     <color name="quick_alphabet_bar_current">#F1517D</color>
     <color name="quick_alphabet_bar_pop">#F1517D</color>
 
+
+    <!--快速索引bar-->
+    <color name="af_quick_index_bar_bg">#00000000</color>
+    <color name="af_quick_index_bar_bg_pressed">#DDDDDD</color>
+    <color name="af_quick_index_bar_text">#555555</color>
+    <color name="af_quick_index_bar_text_pressed">#004A9B</color>
+    <color name="af_quick_index_bar_text_bg">#00000000</color>
+    <color name="af_quick_index_bar_text_bg_pressed">#AAAAAA</color>
+
 </resources>

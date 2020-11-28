@@ -18,8 +18,8 @@ import com.afap.androidutils.R;
 import com.afap.androidutils.adapter.CityListAdapter;
 import com.afap.androidutils.database.DB;
 import com.afap.androidutils.model.City;
+import com.afap.widget.QuickIndexBar;
 import com.afap.widget.pinnedheaderlistview.PinnedHeaderListView;
-import com.afap.widget.QuickAlphabetBar;
 
 public class PinnedHeaderListViewActivity extends BaseActivity {
 
@@ -30,7 +30,7 @@ public class PinnedHeaderListViewActivity extends BaseActivity {
      */
     private CityListAdapter mCityListAdapter;
     private PinnedHeaderListView mPinnedHeaderListView;
-    private QuickAlphabetBar mQuickAlphabeticBar; // 快速索引条
+    private QuickIndexBar mQuickIndexBar; // 快速索引条
     private List<String> mSections; // 首字母集
     private Map<String, List<City>> mMap; // 根据首字母存放
     private List<Integer> mPositions; // 首字母位置集
@@ -53,13 +53,13 @@ public class PinnedHeaderListViewActivity extends BaseActivity {
 
     private void initView() {
         // 由于mPinnedHeaderListView关联使用该对象，需要前置定义
-        mQuickAlphabeticBar = (QuickAlphabetBar) findViewById(R.id.choosecity_bladeview);
+        mQuickIndexBar =   findViewById(R.id.choosecity_bladeview);
 
 
         mPinnedHeaderListView = (PinnedHeaderListView) findViewById(R.id.pinned_header_list);
 
         mCityListAdapter = new CityListAdapter(this, mCityList, mMap,
-                mSections, mPositions, mIndexer, mPinnedHeaderListView, mQuickAlphabeticBar);
+                mSections, mPositions, mIndexer, mPinnedHeaderListView, mQuickIndexBar);
         mPinnedHeaderListView.setAdapter(mCityListAdapter);
         mPinnedHeaderListView.setOnScrollListener(mCityListAdapter);
         mPinnedHeaderListView.setOnItemClickListener(new OnItemClickListener() {

@@ -1,34 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-
-    <RelativeLayout
+    <com.afap.widget.pinnedheaderlistview.PinnedHeaderListView
+        android:id="@+id/pinned_header_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:alwaysDrawnWithCache="true"
+        android:cacheColorHint="#00000000"
+        android:divider="#cecece"
+        android:dividerHeight="0.5dp"
+        android:drawSelectorOnTop="false"
+        android:fadingEdgeLength="0.0dip"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none" />
 
-        <com.afap.widget.pinnedheaderlistview.PinnedHeaderListView
-            android:id="@+id/pinned_header_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alwaysDrawnWithCache="true"
-            android:cacheColorHint="#00000000"
-            android:divider="#cecece"
-            android:dividerHeight="0.5dp"
-            android:drawSelectorOnTop="false"
-            android:fadingEdgeLength="0.0dip"
-            android:focusableInTouchMode="true"
-            android:scrollbars="none" />
+    <com.afap.widget.QuickIndexBar
+        android:id="@+id/choosecity_bladeview"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true" />
 
-        <com.afap.widget.QuickAlphabetBar
-            android:id="@+id/choosecity_bladeview"
-            android:layout_width="28dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right" />
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.afap.utils.R;
 
 /**
- * 快速字母索引条
+ * 快速字母索引条--废弃！！！
  */
 public class QuickAlphabetBar extends View {
     private OnLetterClickListener mOnItemClickListener = null;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/af_quick_index_bar_text_bg"
+    android:gravity="center"
+    android:padding="@dimen/af_quick_index_bar_text_padding"
+    android:text="111"
+    android:textColor="@drawable/af_quick_index_bar_text_color"
+    android:textSize="@dimen/af_quick_index_bar_text" />

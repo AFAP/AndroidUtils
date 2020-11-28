@@ -8,7 +8,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.afap.utils.R;
-import com.afap.widget.QuickAlphabetBar;
+import com.afap.widget.QuickIndexBar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,29 +23,34 @@ public class PinnedHeaderListViewAdapter<T> extends BaseAdapter implements Secti
     private List<String> mSections; // 首字母集
     private Map<String, Integer> mIndexMap; // 首字母对应的位置
     private PinnedHeaderListView mPinnedHeaderListView;
-    private QuickAlphabetBar mQuickAlphabetBar;
+    private QuickIndexBar mQuickIndexBar;
     private int curFirstVisibleItem = -1;
     private int curSection = -1;
 
     public PinnedHeaderListViewAdapter(List<T> list, Map<String, List<T>> map, List<String> sections,
                                        List<Integer> positions, Map<String, Integer> indexeMap, PinnedHeaderListView
-                                               listView, QuickAlphabetBar bar) {
+                                               listView, QuickIndexBar bar) {
         mData = list;
         mMap = map;
         mSections = sections;
         mPositions = positions;
         mIndexMap = indexeMap;
         mPinnedHeaderListView = listView;
-        mQuickAlphabetBar = bar;
-        if (mQuickAlphabetBar.getOnItemClickListener() == null) {
-            mQuickAlphabetBar.setOnItemClickListener(new QuickAlphabetBar.OnLetterClickListener() {
+        mQuickIndexBar = bar;
+        if (mQuickIndexBar.getOnLetterUpdateListener() == null) {
+            mQuickIndexBar.setOnLetterUpdateListener(new QuickIndexBar.OnLetterUpdateListener() {
                 @Override
-                public void onItemClick(String s) {
-                    if (mIndexMap.get(s) != null) {
+                public void onLetterUpdate(String letter) {
+                    if (mIndexMap.get(letter) != null) {
                         mPinnedHeaderListView.setSelection(
-                                mIndexMap.get(s) + mPinnedHeaderListView.getHeaderViewsCount()
+                                mIndexMap.get(letter) + mPinnedHeaderListView.getHeaderViewsCount()
                         );
                     }
+                }
+
+                @Override
+                public void onLetterCancel() {
+
                 }
             });
         }
@@ -105,7 +110,7 @@ public class PinnedHeaderListViewAdapter<T> extends BaseAdapter implements Secti
             if (curSection != section) {
                 curSection = section;
                 String letter = (String) getSections()[curSection];
-                mQuickAlphabetBar.setPositionByLetter(letter);
+//                mQuickIndexBar.setPositionByLetter(letter);
             }
         }
     }
