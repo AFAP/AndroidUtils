@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
 
-def VERSION_CODE = 104
-def VERSION_NAME = "1.0.4"
+def VERSION_CODE = 105
+def VERSION_NAME = "1.0.5"
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -30,6 +30,8 @@ android {
 
     compileOptions {
         encoding "UTF-8"
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 
