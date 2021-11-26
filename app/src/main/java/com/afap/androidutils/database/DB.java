@@ -29,7 +29,7 @@ public class DB extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "CREATE table IF NOT EXISTS ";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS ";
 
-    private Context mContext;
+    private final Context mContext;
 
     public DB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -70,7 +70,7 @@ public class DB extends SQLiteOpenHelper {
                     JSONObject c = citys.optJSONObject(i);
                     String city_name = c.optString("city_name");
 
-                    String city_pinyin = "";
+                    String city_pinyin;
                     if (TextUtils.equals(city_name, "厦门")) {
                         city_pinyin = "xiamen";
                     } else if (TextUtils.equals(city_name, "重庆")) {
@@ -115,15 +115,13 @@ public class DB extends SQLiteOpenHelper {
 
     // 获得所有市
     public List<City> getAllCitys() {
-        List<City> list = new ArrayList<City>();
+        List<City> list = new ArrayList<>();
         SQLiteDatabase sqlitedb = getWritableDatabase();
         Cursor c = sqlitedb.query(CityTable.TABLE_NAME, null, null, null, null, null, null, null);
         while (c.moveToNext()) {
             list.add(City.parseFromCursor(c));
         }
-        if (c != null) {
-            c.close();
-        }
+        c.close();
         return list;
     }
 

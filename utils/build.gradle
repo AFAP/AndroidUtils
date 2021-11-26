@@ -1,9 +1,11 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'com.novoda.bintray-release'
 
-def VERSION_CODE = 105
-def VERSION_NAME = "1.0.5"
+//def VERSION_CODE = 105
+//def VERSION_NAME = "1.0.5"
+
+//gpg --keyserver hkp://keyserver.ubuntu.com --send-keys 5B423C03
+//gpg --keyserver hkp://keyserver.ubuntu.com --search-keys 5B423C03
+//gpg -o /Users/atom/androidutils.gpg --export-secret-keys 5B423C03
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -11,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        versionCode 105
+        versionName "1.0.5"
     }
 
 
@@ -37,34 +39,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
 }
-
-publish {
-    userOrg = 'af'
-    groupId = 'com.afap'
-    artifactId = 'utils'
-    publishVersion = VERSION_NAME
-    desc = 'Android Utils!'
-    website = 'https://github.com/AFAP/AndroidUtils'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options.encoding = "UTF-8"
-    options {
-        encoding "UTF-8"
-        charSet 'UTF-8'
-    }
-}
-allprojects {
-    tasks.withType(Javadoc) {
-        options {
-            encoding "UTF-8"
-            charSet 'UTF-8'
-            links "http://docs.oracle.com/javase/7/docs/api"
-        }
-    }
-}
-// 最终发布命令:gradlew clean build bintrayUpload -PbintrayUser=xxxxxx -PbintrayKey=xxxxxxxxxxxxxxxxxxxxxxx -PdryRun=false
