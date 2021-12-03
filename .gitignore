@@ -7,3 +7,4 @@
 .DS_Store
 /utils/src/info.txt
 /utils/src/project.properties
+*.gpg
